@@ -1,3 +1,5 @@
 from django.shortcuts import render
 
-# Create your views here.
+
+def baraa_burtgel(request):
+    return render(request, "baraa/baraaBurtgel.html", {"baraa": "tsunh"})
