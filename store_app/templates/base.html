@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>{% block title %}Ecommerce{% endblock %}</title>
+    {% load static %}
+    <link href="{% static 'css/bootstrap.css' %}" rel="stylesheet" type="text/css"/>
+    <link href="{% static 'fonts/fontawesome/css/all.min.css' %}" rel="stylesheet" type="text/css"/>
+</head>
+<body>
+    <header>
+        {% include 'partials/header.html' %}
+    </header>
+
+    <main>
+        {% block content %}{% endblock %}
+    </main>
+
+    <footer>
+        {% include 'partials/footer.html' %}
+    </footer>
+
+    <script src="{% static 'js/jquery-2.0.0.min.js' %}"></script>
+    <script src="{% static 'js/bootstrap.bundle.min.js' %}"></script>
+</body>
+</html>
