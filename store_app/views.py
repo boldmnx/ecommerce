@@ -1,4 +1,5 @@
 from django.shortcuts import render
+from .models import Product, Category
 
 
 def index(request):
@@ -35,3 +36,8 @@ def signin(request):
 
 def store(request):
     return render(request, "store.html")
+
+
+def lab3(request):
+    products = Product.objects.all()
+    return render(request, "lab3.html", {'products': products})

@@ -1,5 +1,7 @@
 from django.urls import path
 from . import views
+from django.conf.urls.static import static
+from django.conf import settings
 
 urlpatterns = [
     path('', views.index, name="index"),
@@ -11,4 +13,5 @@ urlpatterns = [
     path('search/', views.search_result, name="search_result"),
     path('signin/', views.signin, name="signin"),
     path('store/', views.store, name="store"),
+    path('lab3/', views.lab3, name="lab3"),
 ]
