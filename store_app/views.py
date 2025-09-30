@@ -1,4 +1,4 @@
-from django.shortcuts import render
+from django.shortcuts import get_object_or_404, render
 from .models import Product, Category
 
 
@@ -35,7 +35,22 @@ def signin(request):
 
 
 def store(request):
-    return render(request, "store.html")
+    products = Product.objects.all()
+    return render(request, "store.html", {'products': products})
+
+
+def store(request, slug=None):
+    categories = None
+    products = None
+    if slug != None:
+        categories = get_object_or_404(Category, slug=slug)
+        products = Product.objects.filter(category=categories)
+        count = products.count()
+        garchig = slug
+    else:
+        products = Product.objects.all().filter(is_available=True)
+        count = products.count()
+    return render(request, "store.html", {'products': products, 'count': count, 'garchig': categories})
 
 
 def lab3(request):

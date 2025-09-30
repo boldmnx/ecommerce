@@ -12,6 +12,7 @@ urlpatterns = [
     path('register/', views.register, name="register"),
     path('search/', views.search_result, name="search_result"),
     path('signin/', views.signin, name="signin"),
+    path('store/<str:slug>', views.store, name="storeSlug"),
     path('store/', views.store, name="store"),
     path('lab3/', views.lab3, name="lab3"),
 ]

@@ -47,12 +47,13 @@
 							<i class="fa fa-bars"></i> All category
 						</button>
 						<div class="dropdown-menu">
-							<a class="dropdown-item" href="#">Machinery / Mechanical Parts / Tools </a>
-							<a class="dropdown-item" href="#">Consumer Electronics / Home Appliances </a>
-							<a class="dropdown-item" href="#">Auto / Transportation</a>
-							<a class="dropdown-item" href="#">Apparel / Textiles / Timepieces </a>
-							<a class="dropdown-item" href="#">Home & Garden / Construction / Lights </a>
-							<a class="dropdown-item" href="#">Beauty & Personal Care / Health </a>
+							{%if categories%}
+							{%for i in categories%}
+							<a class="dropdown-item" href="{% url 'storeSlug' slug=i.slug %}">{{i.category_name}}</a>
+							{%endfor%}
+							{%else%}
+							<a class="dropdown-item" href="#">categories alga</a>
+							{%endif%}
 						</div>
 					</div> <!-- category-wrap.// -->
 				</div> <!-- col.// -->
