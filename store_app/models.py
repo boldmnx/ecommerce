@@ -1,5 +1,6 @@
 from django.db import models
 from django.db.models.fields import SlugField
+from django.urls import reverse
 
 
 class Category(models.Model):
@@ -10,6 +11,9 @@ class Category(models.Model):
 
     def __str__(self):
         return self.category_name
+
+    def get_url(self):
+        return reverse('products_by_category', args=[self.slug])
 
     class Meta:
         db_table = 'category_tbl'
@@ -29,6 +33,9 @@ class Product(models.Model):
 
     class Meta:
         db_table = "baraa_tbl"
+
+    def get_url(self):
+        return reverse('product_detail', args=[self.category.slug, self.slug])
 
     def __str__(self):
         return f'{self.product_name} ({self.category.category_name})'

@@ -32,7 +32,7 @@
 								<ul class="list-menu">
 									{%if categories %}
 									{%for i in categories %}
-									<li><a href="{%url 'storeSlug' slug=i.slug %}">{{i.category_name}} </a></li>
+									<li><a href="{{i.get_url}}">{{i.category_name}} </a></li>
 									{% endfor %}
 									{% else %}
 									<li><a href="#">data alga</a></li>
@@ -130,6 +130,7 @@
 				<div class="row">
 					{%if products%}
 					{%for i in products%}
+
 					<div class="col-md-4">
 						<figure class="card card-product-grid">
 							<div class="img-wrap">
@@ -139,14 +140,18 @@
 							</div> <!-- img-wrap.// -->
 							<figcaption class="info-wrap">
 								<div class="fix-height">
-									<a href="{% url 'product_detail' id=i.id%}" class="title">Great item name goes
-										here</a>
+									<a href="{{i.get_url}}" class="title">{{i.product_name}}</a>
 									<div class="price-wrap mt-2">
-										<span class="price">{{i.price}}</span>
+										<span class="price">${{i.price}}.00</span>
 										<del class="price-old">$1980</del>
 									</div> <!-- price-wrap.// -->
 								</div>
-								<a href="#" class="btn btn-block btn-success">Added to cart </a>
+								{% if i.stock == 0 %}
+								<p class="text-danger">Үлдэгдэл алга байна</p>
+								<a href="{{i.get_url}}" class="btn btn-block btn-success disabled">Added to cart </a>
+								{%else%}
+								<a href="{{i.get_url}}" class="btn btn-block btn-success">Added to cart </a>
+								{%endif%}
 							</figcaption>
 						</figure>
 					</div> <!-- col.// -->

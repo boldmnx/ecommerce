@@ -1,9 +1,10 @@
-from django.shortcuts import get_object_or_404, render
+from django.shortcuts import get_object_or_404, redirect, render
 from .models import Product, Category
 
 
 def index(request):
-    return render(request, "index.html")
+    productAll = Product.objects.all()
+    return render(request, "index.html", {'productAll': productAll})
 
 
 def cart(request):
@@ -18,9 +19,14 @@ def order_complete(request):
     return render(request, "order_complete.html")
 
 
-def product_detail(request, id):
-    return render(request, "product-detail.html", {'id': id})
-
+def product_detail(request, product_slug=None, cat_slug=None):
+    product = None
+    if product_slug != None:
+        product = Product.objects.get(
+            slug=product_slug, category__slug=cat_slug)
+        return render(request, "product-detail.html", {'product': product})
+    else:
+        return redirect()
 
 def register(request):
     return render(request, "register.html")

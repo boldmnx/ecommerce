@@ -49,7 +49,7 @@
 						<div class="dropdown-menu">
 							{%if categories%}
 							{%for i in categories%}
-							<a class="dropdown-item" href="{% url 'storeSlug' slug=i.slug %}">{{i.category_name}}</a>
+							<a class="dropdown-item" href="{{i.slug }}">{{i.category_name}}</a>
 							{%endfor%}
 							{%else%}
 							<a class="dropdown-item" href="#">categories alga</a>

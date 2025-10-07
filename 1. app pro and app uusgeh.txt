@@ -1,6 +1,0 @@
-1. app pro and app uusgeh
-2. settings.py tohirgoo
-3. template ba static
-4. base.html
-5. busad huudasa base aas udamshuulna
-6. view and url holboh
