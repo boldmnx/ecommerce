@@ -1,5 +1,6 @@
 from django.shortcuts import get_object_or_404, redirect, render
 from .models import Product, Category
+from django.core.paginator import Paginator
 
 
 def index(request):
@@ -28,6 +29,7 @@ def product_detail(request, product_slug=None, cat_slug=None):
     else:
         return redirect()
 
+
 def register(request):
     return render(request, "register.html")
 
@@ -51,12 +53,19 @@ def store(request, slug=None):
     if slug != None:
         categories = get_object_or_404(Category, slug=slug)
         products = Product.objects.filter(category=categories)
+        p = Paginator(products, 3)
+        page = request.GET.get('page')
+        page_products = p.get_page(page)
         count = products.count()
-        garchig = slug
+        garchig = categories
     else:
         products = Product.objects.all().filter(is_available=True)
+        p = Paginator(products, 3)
+        page = request.GET.get('page')
+        page_products = p.get_page(page)
         count = products.count()
-    return render(request, "store.html", {'products': products, 'count': count, 'garchig': categories})
+
+    return render(request, "store.html", {'products': page_products, 'count': count, 'garchig': categories})
 
 
 def lab3(request):
