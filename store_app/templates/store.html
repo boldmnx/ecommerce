@@ -149,8 +149,10 @@
 								{% if i.stock == 0 %}
 								<p class="text-danger">Үлдэгдэл алга байна</p>
 								<a href="{{i.get_url}}" class="btn btn-block btn-success disabled">Added to cart </a>
+								<!-- <a href="{{i.get_url}}" class="btn btn-block btn-success disabled">Added to cart </a> -->
 								{%else%}
-								<a href="{{i.get_url}}" class="btn btn-block btn-success">Added to cart </a>
+								<a href="{% url 'add_cart' i.id %}" class="btn btn-block btn-success">Added
+									to cart </a>
 								{%endif%}
 							</figcaption>
 						</figure>
@@ -188,69 +190,69 @@
 				</nav> -->
 				<nav aria-label="Page navigation" class="mt-4">
 					<ul class="pagination justify-content-center">
-				  
-					  {# --- Өмнөх товч --- #}
-					  {% if products.has_previous %}
+
+						{# --- Өмнөх товч --- #}
+						{% if products.has_previous %}
 						<li class="page-item">
-						  <a class="page-link" href="?page={{ products.previous_page_number }}">Previous</a>
+							<a class="page-link" href="?page={{ products.previous_page_number }}">Previous</a>
 						</li>
-					  {% else %}
+						{% else %}
 						<li class="page-item disabled">
-						  <span class="page-link">Previous</span>
+							<span class="page-link">Previous</span>
 						</li>
-					  {% endif %}
-				  
-					  {# --- Эхний хуудас --- #}
-					  {% if products.number > 3 %}
+						{% endif %}
+
+						{# --- Эхний хуудас --- #}
+						{% if products.number > 3 %}
 						<li class="page-item">
-						  <a class="page-link" href="?page=1">1</a>
+							<a class="page-link" href="?page=1">1</a>
 						</li>
 						{% if products.number > 4 %}
-						  <li class="page-item disabled"><span class="page-link">...</span></li>
+						<li class="page-item disabled"><span class="page-link">...</span></li>
 						{% endif %}
-					  {% endif %}
-				  
-					  {# --- Одоогийн хуудасны орчим --- #}
-					  {% for num in products.paginator.page_range %}
+						{% endif %}
+
+						{# --- Одоогийн хуудасны орчим --- #}
+						{% for num in products.paginator.page_range %}
 						{% if num >= products.number|add:'-2' and num <= products.number|add:'2' %}
-						  {% if num == products.number %}
-							<li class="page-item active">
-							  <span class="page-link">{{ num }}</span>
-							</li>
-						  {% else %}
-							<li class="page-item">
-							  <a class="page-link" href="?page={{ num }}">{{ num }}</a>
-							</li>
-						  {% endif %}
+						{% if num == products.number %}
+						<li class="page-item active">
+							<span class="page-link">{{ num }}</span>
+						</li>
+						{% else %}
+						<li class="page-item">
+							<a class="page-link" href="?page={{ num }}">{{ num }}</a>
+						</li>
 						{% endif %}
-					  {% endfor %}
-				  
-					  {# --- Сүүлийн хуудас --- #}
-					  {% if products.number < products.paginator.num_pages|add:'-2' %}
+						{% endif %}
+						{% endfor %}
+
+						{# --- Сүүлийн хуудас --- #}
+						{% if products.number < products.paginator.num_pages|add:'-2' %}
 						{% if products.number < products.paginator.num_pages|add:'-3' %}
-						  <li class="page-item disabled"><span class="page-link">...</span></li>
+						<li class="page-item disabled"><span class="page-link">...</span></li>
 						{% endif %}
 						<li class="page-item">
-						  <a class="page-link" href="?page={{ products.paginator.num_pages }}">
-							{{ products.paginator.num_pages }}
-						  </a>
+							<a class="page-link" href="?page={{ products.paginator.num_pages }}">
+								{{ products.paginator.num_pages }}
+							</a>
 						</li>
-					  {% endif %}
-				  
-					  {# --- Дараах товч --- #}
-					  {% if products.has_next %}
+						{% endif %}
+
+						{# --- Дараах товч --- #}
+						{% if products.has_next %}
 						<li class="page-item">
-						  <a class="page-link" href="?page={{ products.next_page_number }}">Next</a>
+							<a class="page-link" href="?page={{ products.next_page_number }}">Next</a>
 						</li>
-					  {% else %}
+						{% else %}
 						<li class="page-item disabled">
-						  <span class="page-link">Next</span>
+							<span class="page-link">Next</span>
 						</li>
-					  {% endif %}
-				  
+						{% endif %}
+
 					</ul>
-				  </nav>
-				  
+				</nav>
+
 
 			</main> <!-- col.// -->
 

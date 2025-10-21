@@ -5,7 +5,6 @@ from django.conf import settings
 
 urlpatterns = [
     path('', views.index, name="index"),
-    path('cart/', views.cart, name="cart"),
     path('dashboard/', views.dashboard, name="dashboard"),
     path('order-complete/', views.order_complete, name="order_complete"),
     path('register/', views.register, name="register"),

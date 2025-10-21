@@ -8,10 +8,6 @@ def index(request):
     return render(request, "index.html", {'productAll': productAll})
 
 
-def cart(request):
-    return render(request, "cart.html")
-
-
 def dashboard(request):
     return render(request, "dashboard.html")
 

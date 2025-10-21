@@ -73,14 +73,14 @@
 						{% if product.stock == 0 %}
 						<p class="text-danger">Үлдэгдэл алга байна</p>
 						<hr>
-						<a href="#" class="btn btn-primary disabled">
+						<a href="{% url 'cart' %}" class="btn btn-primary disabled">
 							<span class="text">Сагсанд нэмэх</span>
 							<i class="fas fa-shopping-cart"></i>
 						</a>
 						{% else %}
 						<p class="text-success">Үлдэгдэл: {{ product.stock }}</p>
 						<hr>
-						<a href="#" class="btn btn-primary">
+						<a href="{% url 'cart' product.id%}" class="btn btn-primary">
 							<span class="text">Сагсанд нэмэх</span>
 							<i class="fas fa-shopping-cart"></i>
 						</a>
